@@ -4,3 +4,42 @@ body {
   background: darken(white, 10%);
   margin: 50px;
 }
+
+#note {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  font-size: 1.5em;
+  color: black;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+
+#text {
+  width: 80%;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+#submit {
+  width: auto;
+  display: inline;
+  font-size: inherit;
+  padding: 10px;
+  border-left-style: solid;
+  border-right-style: none;
+  border-top-style: none;
+  border-bottom-style: none;
+  background-color: white;
+}
+
+#inputbar {
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: #888888;
+  background-color: white;
+}
