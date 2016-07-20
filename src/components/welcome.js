@@ -2,7 +2,7 @@ import React from 'react';
 
 
 // function based "dumb" component with no state
-const Welcome = () => {
+const Welcome = (props) => {
   return (
     <div>
       react+webpack+babel+eslint starter

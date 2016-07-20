@@ -5,17 +5,9 @@ body {
   margin: 50px;
 }
 
-#note {
-  width: 200px;
-  height: 200px;
-  background-color: white;
-  font-size: 1.5em;
-  color: black;
-  box-shadow: 5px 5px 5px #888888;
-}
-
 #text {
-width: 60%;
+  flex-grow: 8;
+  align-content: stretch;
   font-size: 16px;
   padding: 10px;
   border: none;
@@ -23,14 +15,13 @@ width: 60%;
 }
 
 #submit {
+  flex-grow: 1;
   font-size: inherit;
-  text-align: center;
-  // width: 150px;
   padding: 10px;
   border-left-style: solid;
-  border-right-style: none;
-  border-top-style: none;
-  border-bottom-style: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-right-style: none; border-top-style: none; border-bottom-style: none;
   border-color: #888888;
   background-color: white;
 }
@@ -38,6 +29,7 @@ width: 60%;
 #inputbar {
   display: flex;
   justify-content: space-between;
+  align-content: stretch;
   width: 100%;
   margin-bottom: 5px;
   border-radius: 5px;
@@ -46,6 +38,15 @@ width: 60%;
   background-color: white;
 }
 
+#note {
+  position: absolute;
+  min-width: 200px;
+  min-height: 120px;
+  background-color: white;
+  font-size: 1.5em;
+  color: black;
+  box-shadow: 5px 5px 5px #888888;
+}
 
 #topbar {
   display: flex;
@@ -54,6 +55,13 @@ width: 60%;
   justify-content: space-between;
 }
 
-#content {
+#editinput {
+  display: inline-block;
+  width: 97%;
+  height: 100%;
+}
 
+#textarea {
+  width: 97%;
+  max-width: 97%;
 }

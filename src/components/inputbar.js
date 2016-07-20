@@ -7,11 +7,12 @@ const InputBar = (props) => {
     event.preventDefault();
     props.onSubmit(id, document.getElementById('text').value);
     id++;
+    document.getElementById('inputbar').reset();
   }
 
   return (
-    <div id="inputbar">
-      <form onSubmit={submit}>
+    <div>
+      <form id="inputbar" onSubmit={submit}>
         <input type="text" id="text" placeholder="new note title" />
         <input type="submit" value="Submit" id="submit" />
       </form>
