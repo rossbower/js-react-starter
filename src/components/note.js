@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-// import Draggable from 'react-draggable';
+import Draggable from 'react-draggable';
+import marked from 'marked';
 
 class Note extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      isEditing: false,
+    };
+
+    this.onEdit = this.onEdit.bind(this);
   }
 
   onDelete() {
@@ -14,32 +19,34 @@ class Note extends Component {
 
   onEdit() {
     console.log('clicked edit');
-  }
-
-  onMove() {
-    console.log('clicked move');
+    this.setState({ isEditing: true });
   }
 
   render() {
     return (
-      // <Draggable
-      //   handle=".note-mover"
-      //   grid={[25, 25]}
-      //   defaultPosition={{ x: 20, y: 20 }}
-      //   position={null}
-      //   onStart={this.onStartDrag}
-      //   onDrag={this.onDrag}
-      //   onStop={this.onStopDrag}
-      // >
-      <div id="note">
-        <span id="topbar">
-          <a>`${this.props.title}`</a>
-          <i className="fa fa-trash-o" aria-hidden="true" onClick={this.onDelete}></i>
-          <i className="fa fa-pencil" aria-hidden="true" onClick={this.onEdit}></i>
-          <i className="fa fa-arrows-alt" onClick={this.onMove}></i>
-        </span>
-      </div>
-      // </Draggable>
+      <Draggable
+        handle=".handle"
+        grid={[25, 25]}
+        defaultPosition={{ x: 20, y: 20 }}
+        position={null}
+        onStart={this.onStartDrag}
+        onDrag={this.onDrag}
+        onStop={this.onStopDrag}
+      >
+        <div id="note">
+          <span id="topbar">
+            <div className="left">
+              <a>{this.props.title}</a>
+              <i className="fa fa-trash-o" aria-hidden="true" onClick={this.onDelete}></i>
+              <i className="fa fa-pencil" aria-hidden="true" onClick={this.onEdit}></i>
+            </div>
+            <div className="handle">
+              <i className="fa fa-arrows-alt"></i>
+            </div>
+          </span>
+          <div id="content" className="noteBody" dangerouslySetInnerHTML={{ __html: marked(this.props.content || '') }} />
+        </div>
+      </Draggable>
 
     );
   }
