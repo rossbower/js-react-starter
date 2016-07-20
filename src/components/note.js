@@ -6,15 +6,19 @@ class Note extends Component {
   constructor(props) {
     super(props);
 
+    const id = props.id;
+
     this.state = {
       isEditing: false,
     };
 
     this.onEdit = this.onEdit.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   onDelete() {
     console.log('clicked delete');
+    this.props.onDelete(this.props.id);
   }
 
   onEdit() {

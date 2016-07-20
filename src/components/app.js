@@ -17,27 +17,34 @@ class App extends Component {
       //...
     };
 
-    this.add = this.add.bind(this);
+    this.addNote = this.addNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
-  delete(id) {
+  addNote(id, title) {
+    console.log(`title is ${title}`);
     this.setState({
-      notes: this.state.notes.delete(id),
+      notes: this.state.notes.set(id, { title }),
     });
   }
 
-  add(id, note) {
+  deleteNote(id) {
     this.setState({
-      notes: this.state.notes.set(id, note),
+      notes: this.state.notes.delete(id),
     });
   }
 
   render() {
     return (
       <div>
-        <InputBar />
-        <Note title="test" content="ross" />
+        <InputBar onSubmit={this.addNote} />
+        {this.state.notes.entrySeq().map(([id, note]) => {
+          console.log(`id: ${id}, title: ${note.title}`);
+          return <Note id={id} title={note.title} onDelete={this.deleteNote} />;
+        })
+        }
       </div>
+      // move above div if needed <Note title="test" content="ross" />
     );
   }
 }

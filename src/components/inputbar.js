@@ -1,31 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class InputBar extends Component {
-  constructor(props) {
-    super(props);
+let id = 0;
 
-    this.state = {
-      input: '',
-    };
-
-    this.submit = this.submit.bind(this);
+const InputBar = (props) => {
+  function submit(event) {
+    event.preventDefault();
+    props.onSubmit(id, document.getElementById('text').value);
+    id++;
   }
 
-  submit() {
-    this.setState({ input: document.getElementById('text').value });
-    console.log('Current state: ' + document.getElementById('text').value);
-  }
-
-  render() {
-    return (
-      <div id="inputbar">
-        <form onSubmit={this.submit}>
-          <input type="text" id="text" placeholder="new note title" />
-          <input type="submit" value="Submit" id="submit" />
-        </form>
-      </div>
+  return (
+    <div id="inputbar">
+      <form onSubmit={submit}>
+        <input type="text" id="text" placeholder="new note title" />
+        <input type="submit" value="Submit" id="submit" />
+      </form>
+    </div>
     );
-  }
-}
+};
 
 export default InputBar;
