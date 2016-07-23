@@ -53,6 +53,7 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  padding: 6px;
 }
 
 #editinput {
@@ -64,4 +65,9 @@ body {
 #textarea {
   width: 97%;
   max-width: 97%;
+  height: 100%;
+}
+
+#content {
+  padding: 6px;
 }

@@ -3,6 +3,8 @@ import Draggable from 'react-draggable';
 import marked from 'marked';
 import Textarea from 'react-textarea-autosize';
 
+let z = 0;
+
 class Note extends Component {
   constructor(props) {
     super(props);
@@ -19,23 +21,22 @@ class Note extends Component {
   }
 
   onDelete() {
-    console.log(`clicked delete. title:${this.props.title} x:${this.props.x} y:${this.props.y}`);
     this.props.onDelete(this.props.id);
   }
 
   onEdit() {
-    // console.log('clicked edit');
     this.setState({ isEditing: !this.state.isEditing });
   }
 
   onChange() {
-    // console.log(`this is being passed to save: ${document.getElementById('textarea').value}`);
     this.props.onSave(this.props.id, { text: document.getElementById('textarea').value });
   }
 
   onSave() {
-    // console.log('clicked save');
     this.setState({ isEditing: !this.state.isEditing });
+    console.log(`this is my z index: ${z}`);
+    this.props.onSave(this.props.id, { text: document.getElementById('textarea').value, z });
+    z++;
   }
 
   onDrag(e, ui) {
@@ -47,7 +48,7 @@ class Note extends Component {
       x: this.props.x,
       y: this.props.y,
     };
-    console.log(`x: ${this.props.x}, y: ${this.props.y}`);
+
     if (this.state.isEditing) {
       return (
         <Draggable
@@ -55,6 +56,7 @@ class Note extends Component {
           grid={[25, 25]}
           defaultPosition={{ x: 20, y: 20 }}
           position={position}
+          zIndex={this.props.z}
           onStart={this.onStartDrag}
           onDrag={this.onDrag}
           onStop={this.onStopDrag}
@@ -67,7 +69,7 @@ class Note extends Component {
                 <i className="fa fa-check" aria-hidden="true" onClick={this.onSave}></i>
               </div>
               <div className="handle">
-                <i className="fa fa-arrows-alt"></i>
+                <i className="fa fa-arrows-alt" onClick={this.onMove}></i>
               </div>
             </span>
             <div><Textarea id="textarea" defaultValue={this.props.text} onChange={this.onChange} /></div>
@@ -81,6 +83,7 @@ class Note extends Component {
           grid={[25, 25]}
           defaultPosition={{ x: 20, y: 20 }}
           position={position}
+          zIndex={this.props.z}
           onStart={this.onStartDrag}
           onDrag={this.onDrag}
           onStop={this.onStopDrag}

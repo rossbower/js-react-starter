@@ -11,10 +11,8 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    // init component state here
     this.state = {
       notes: Immutable.Map(),
-      //...
     };
 
     this.addNote = this.addNote.bind(this);
@@ -24,7 +22,6 @@ class App extends Component {
 
 
   addNote(id, title) {
-    // console.log(`title is ${title}`);
     this.setState({
       notes: this.state.notes.set(id, { title, x: ((id + 1) * 20), y: ((id + 1) * 20) }),
     });
@@ -47,11 +44,9 @@ class App extends Component {
       <div>
         <InputBar onSubmit={this.addNote} />
         {this.state.notes.entrySeq().map(([id, note]) => {
-          // console.log(`id: ${id}, title: ${note.title}, text: ${note.text}`);
-          return <Note id={id} key={id} title={note.title} text={note.text} x={note.x} y={note.y} onDelete={this.deleteNote} onSave={this.updateNote} onDrag={this.updateNote} />;
+          return <Note id={id} key={id} title={note.title} text={note.text} x={note.x} y={note.y} z={note.z} onDelete={this.deleteNote} onSave={this.updateNote} onDrag={this.updateNote} />;
         })}
       </div>
-      // move above div if needed <Note title="test" content="ross" />
     );
   }
 }
