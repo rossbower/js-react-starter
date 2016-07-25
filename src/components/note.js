@@ -34,7 +34,6 @@ class Note extends Component {
 
   onSave() {
     this.setState({ isEditing: !this.state.isEditing });
-    console.log(`this is my z index: ${z}`);
     this.props.onSave(this.props.id, { text: document.getElementById('textarea').value, z });
     z++;
   }
